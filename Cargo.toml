@@ -1,0 +1,18 @@
+[package]
+name = "ascii_image"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+image = "0.25.1"
+terminal_size = "0.3.0"
+
+
+[lib]
+name = "ascii_lib"
+path = "src/lib.rs"
+
+
+[[bin]]
+name = "exec"
+path = "src/bin/main.rs"
