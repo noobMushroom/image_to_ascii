@@ -31,7 +31,7 @@ fn sized_image(img: DynamicImage, window_size: (Width, Height)) -> DynamicImage 
     if img.height() > window_size.1 .0 as u32 || img.width() > window_size.0 .0 as u32 {
         img.resize(
             window_size.0 .0 as u32 - 5,
-            window_size.1 .0 as u32,
+            img.height(),
             image::imageops::FilterType::Nearest,
         )
     } else {
