@@ -2,8 +2,10 @@
 name = "ascii_image"
 version = "0.1.0"
 edition = "2021"
+about = "It converts images to ascii characters and prints them in the terminal"
 
 [dependencies]
+clap = { version = "4.5.4", features = ["derive"] }
 image = "0.25.1"
 terminal_size = "0.3.0"
 
@@ -14,5 +16,5 @@ path = "src/lib.rs"
 
 
 [[bin]]
-name = "exec"
+name = "ascii-image"
 path = "src/bin/main.rs"

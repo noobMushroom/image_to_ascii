@@ -1,10 +1,28 @@
-use ascii_lib::{create_ascii, AsciiChars};
-use std::path::Path;
+use ascii_lib::{create_ascii, AsciiChars, ImageRatio};
+use clap::Parser;
+use std::path::PathBuf;
+
+#[derive(Parser)]
+#[command(version, about, long_about = None)]
+struct Cli {
+    /// Path of the image that you want to convert
+    #[arg(short, long, value_name = "IMAGE")]
+    image: PathBuf,
+
+    /// Size of the output image
+    #[arg(value_enum)]
+    size: ImageRatio,
+}
 
 fn main() {
-    // let img_path =
-    //     Path::new(" ");
+    let cli = Cli::parse();
     let char_map = AsciiChars::new(' ', '.', '*', '#');
-    println!("{}", create_ascii(img_path, char_map).unwrap());
-    // _ = create_ascii(img_path, char_map).unwrap();
+
+    match create_ascii(&cli.image, char_map, cli.size) {
+        Ok(image) => println!("{}", image),
+        Err(err) => eprintln!(
+            "Failed to process image: encountered the following error \n\t{}",
+            err
+        ),
+    }
 }
